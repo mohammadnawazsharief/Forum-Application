@@ -28,3 +28,13 @@ Route::get('{provider}/redirect',[
 'as'=>'social.callback'
 
 ]);
+
+Route::group(['middleware'=>'auth'],function(){
+	// Route::get('/index',[
+	// 	'uses'=>'ChannelsController@index',
+	// 	'as'=>'channels'
+	// ]);
+	Route::resource('channels','ChannelsController');
+
+
+});
