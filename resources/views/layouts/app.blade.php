@@ -78,9 +78,10 @@
                 </div>
             </div>
         </nav>
+      
         <div class="container">
             <div class="col-md-4">
-
+                
                 <a href="{{route('discussions.create')}}" class="btn form-control btn-primary">
                     Create A New Discussion
                 </a>
@@ -109,7 +110,7 @@
         </div>
         
     </div>
-
+    
     <!-- Scripts -->
     <script src="/js/app.js"></script>
     <script type="text/javascript" src="{{asset('js/toastr.min.js')}}"></script>

@@ -5,13 +5,13 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                 	<img src="{{$d->user->avatar}}" alt="" width="50px"height="50px">&nbsp;&nbsp;&nbsp;&nbsp;
-                	<span>{{$d->user->name}}</span>
+                	<span>{{$d->user->name}}, <b>{{$d->created_at->diffForHumans()}}</b></span>
                 	<a href="{{route('discussion',['slug'=>$d->slug])}}" class="btn btn-default pull-right"> View
                 	</a>
                 </div>
 
                 <div class="panel-body">
-                	<h3 class="text-center">{{$d->title}}</h3>
+                	<h3 class="text-center"><b>{{$d->title}}</b> </h3>
                    	<p class="">
                    		{{str_limit($d->content,200)}}
                    	</p>

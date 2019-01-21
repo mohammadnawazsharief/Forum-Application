@@ -19,6 +19,6 @@ class SocialsController extends Controller
     		$user->name = $details->nickname;
     		$user->save();
     	});
-    	return redirect('/home'); 
+    	return redirect('/forum'); 
     }
 }
