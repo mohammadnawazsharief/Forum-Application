@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/toastr.min.css')}}">
 
     <!-- Scripts -->
     <script>
@@ -79,8 +80,13 @@
         </nav>
         <div class="container">
             <div class="col-md-4">
+
+                <a href="{{route('discussions.create')}}" class="btn form-control btn-primary">
+                    Create A New Discussion
+                </a>
+                <br><br>
                 <div class="panel panel-default">
-                    
+
                     <div class="panel-heading">
                         Channels
                     </div>
@@ -106,5 +112,16 @@
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>
+    <script type="text/javascript" src="{{asset('js/toastr.min.js')}}"></script>
+    <script>
+        @if(Session::has('success'))
+            toastr.success("{{Session::get('success')}} ")
+        @endif
+    </script>
+    <script>
+        @if(Session::has('info'))
+            toastr.info("{{Session::get('info')}} ")
+        @endif
+    </script>
 </body>
 </html>

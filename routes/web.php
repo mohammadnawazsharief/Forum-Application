@@ -17,7 +17,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/forum', [
+	'uses'=>'ForumsController@index',
+	'as'=>'forum'
+
+]);
 Route::get('{provider}/auth',[
 'uses'=>'SocialsController@auth',
 'as'=>'social.auth'
@@ -35,6 +39,18 @@ Route::group(['middleware'=>'auth'],function(){
 	// 	'as'=>'channels'
 	// ]);
 	Route::resource('channels','ChannelsController');
+	Route::get('discussion/create',[
+		'uses'=>'DiscussionsController@create',
+		'as'=>'discussions.create'
+	]);
+	Route::post('discussions/store',[
+		'uses'=>'DiscussionsController@store',
+		'as'=>'discussions.store'
+	]);
+	Route::get('/discussion/{slug}',[
+		'uses'=>'DiscussionsController@show',
+		'as'=>'discussion'
 
+	]);
 
 });

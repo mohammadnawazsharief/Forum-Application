@@ -19,5 +19,12 @@ class UserstableSeeder extends Seeder
         	'avatar'=>asset('avatars/boy_avatar.png')
 
         ]);
+         App\User::create([
+            'name'=>'aayat',
+            'password'=>bcrypt('123456'),
+            'email'=>'aayat@email.com',
+            'avatar'=>asset('avatars/girl_avatar.jpg')
+
+        ]);
     }
 }
