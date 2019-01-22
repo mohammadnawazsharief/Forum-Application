@@ -66,7 +66,7 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
+          <!--   @if (Route::has('login'))
                 <div class="top-right links">
                     @if (Auth::check())
                         <a href="{{ url('/forum') }}">Home</a>
@@ -75,16 +75,17 @@
                         <a href="{{ url('/register') }}">Register</a>
                     @endif
                 </div>
-            @endif
+            @endif -->
 
             <div class="content">
                 <div class="title m-b-md">
-                    Forum-Application
+                    <a href="/forum" style="text-decoration: none; color: black;">Forum-Application</a>
                 </div>
 
                 <div class="links">
                     <a href="{{route('social.auth',['provider'=>'github'])}}">GitHub</a>
                     <a href="{{route('social.auth',['provider'=>'facebook'])}}">Facebook</a>
+                    <a href="/login">Email Login</a>
                 </div>
             </div>
         </div>

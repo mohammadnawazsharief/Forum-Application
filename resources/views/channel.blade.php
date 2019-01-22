@@ -17,18 +17,17 @@
                    	</p>
                 </div>
                 <div class="panel-footer">
-                	<span>
-                		{{$d->replies->count()}} Replies
-                	</span>
+                  <span>
+                    {{$d->replies->count()}} Replies
+                  </span>
                   <a href="{{route('channel',['slug'=>$d->channel->slug])}}" class="pull-right btn btn-default btn-xs">
                     {{$d->channel->title}}
                   </a>
                 </div>
             </div>
       		@endforeach
-          
-          <!-- below is done for pagination -->
+
       		<div class="text-center">
-      			{{$discussions->links()}}
-      		</div>
+            {{$discussions->links()}}  
+          </div>
 @endsection

@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-
+        
+        
             <div class="panel panel-default">
                 <div class="panel-heading">
                 	<img src="{{$d->user->avatar}}" alt="" width="50px"height="50px">&nbsp;&nbsp;&nbsp;&nbsp;
@@ -18,9 +19,12 @@
                    	</p>
                 </div>
                 <div class="panel-footer">
-                	<p>
-                		{{$d->replies->count()}} Replies
-                	</p>
+                    <span>
+                        {{$d->replies->count()}} Replies
+                    </span>
+                  <a href="{{route('channel',['slug'=>$d->channel->slug])}}" class="pull-right btn btn-default btn-xs">
+                    {{$d->channel->title}}
+                  </a>
                 </div>
             </div>
 
@@ -58,6 +62,7 @@
 
             <div class="panel panel-default">
             	<div class="panel-body">
+                    @if(Auth::check())
             		<form action="{{route('discussion.reply',['id'=>$d->id])}}"
             			method="POST">
             			{{csrf_field()}}
@@ -73,7 +78,13 @@
             				</button>
             			</div>
             		</form>
+                    @else
+                        <div class="text-center">
+                            <h2>Sign in to Leave a Reply</h2>
+                        </div>
+                    @endif
             	</div>
             </div>
-      
+        
+        
 @endsection

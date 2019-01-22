@@ -78,7 +78,7 @@
                 </div>
             </div>
         </nav>
-      
+        
         <div class="container">
             <div class="col-md-4">
                 
@@ -86,6 +86,19 @@
                     Create A New Discussion
                 </a>
                 <br><br>
+                <!-- useful Links -->
+                <div class="panel panel-default">
+
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <a href="/forum" style="text-decoration: none;">HOME</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+
                 <div class="panel panel-default">
 
                     <div class="panel-heading">
@@ -96,16 +109,20 @@
                         <ul class="list-group">
                             @foreach($channels as $channel)
                                 <li class="list-group-item">
-                                    {{$channel->title}}
+                                    <a href="{{route('channel',['slug'=>$channel->slug])}}" style="text-decoration: none;">
+                                        {{$channel->title}}
+                                    </a>
                                 </li>
                             @endforeach
                         </ul>
                     </div>
                 </div>
             </div>
+            
             <div class="col-md-8">
                  @yield('content')   
             </div>
+            
             
         </div>
         
