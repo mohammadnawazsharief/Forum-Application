@@ -5,10 +5,15 @@
         
             <div class="panel panel-default">
                 <div class="panel-heading">
-                	<img src="{{$d->user->avatar}}" alt="" width="50px"height="50px">&nbsp;&nbsp;&nbsp;&nbsp;
-                	<span>{{$d->user->name}}, <b>{{$d->created_at->diffForHumans()}}</b></span>
-                	<a href="{{route('discussion',['slug'=>$d->slug])}}" class="btn btn-default pull-right"> View
-                	</a>
+                	<img src="{{$d->user->avatar}}" alt="" width="50px"height="50px">
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                	<span>{{$d->user->name}}, <b>{{$d->created_at->diffForHumans()}}</b>
+                    </span>
+                	@if($d->is_being_watched_by_auth_user())   
+                        <a href="{{route('discussion.unwatch',['id'=>$d->id])}}" class="btn btn-default pull-right btn-xs">unWatch</a>
+                    @else 
+                        <a href="{{route('discussion.watch',['id'=>$d->id])}}" class="btn btn-default pull-right btn-xs">Watch</a>
+                    @endif
                 </div>
 
                 <div class="panel-body">

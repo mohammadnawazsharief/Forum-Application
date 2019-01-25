@@ -72,5 +72,16 @@ Route::group(['middleware'=>'auth'],function(){
 		'uses'=>'RepliesController@unlike',
 		'as'=>'reply.unlike'
 	]);
+	Route::get('/discussion/watch/{id}',[
+		'user'=>'WatchersController@watch',
+		'as'=>'discussion.watch'
+		
+
+	]);
+	Route::get('/discussion/unwatch/{id}',[
+		'user'=>'WatchersController@unwatch',
+		'as'=>'discussion.unwatch'
+
+	]);
 
 });
