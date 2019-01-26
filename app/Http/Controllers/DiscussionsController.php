@@ -41,7 +41,10 @@ class DiscussionsController extends Controller
     public function show($slug)
     {
         $discussion = Discussion::where('slug',$slug)->first();
-        return view('discussions.show')->with('d',$discussion);
+        $best_answer = $discussion->replies()->where('best_answer',1)->first();
+        return view('discussions.show')
+                    ->with('d',$discussion)
+                    ->with('best_answer',$best_answer);
     }
     public function reply($id)
     {
@@ -53,6 +56,10 @@ class DiscussionsController extends Controller
             'content'=>request()->reply
 
         ]);
+
+        $reply->user->points += 50;
+        $reply->user->save();
+
         $watchers = array();
         foreach($d->watchers as $watcher)
         {
@@ -62,5 +69,21 @@ class DiscussionsController extends Controller
         Notification::send($watchers, new \App\Notifications\NewReplyAdded($d));
         Session::flash('success','Replied to the Discussion');
         return redirect()->back();
+    }
+    public function edit($slug)
+    {
+        return view('discussions.edit',['discussion'=>Discussion::where('slug',$slug)->first()]);
+    }
+     public function update($id)
+    {
+        $this->validate(request(),[
+            'content'=>'required'
+        ]);
+
+        $d = Discussion::find($id);
+        $d->content = request()->content;
+        $d->save();
+        Session::flash('success','Discussion Updated');
+        return redirect()->route('discussion',['slug'=>$d->slug]);
     }
 }

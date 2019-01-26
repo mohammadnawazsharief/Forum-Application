@@ -78,7 +78,21 @@
                 </div>
             </div>
         </nav>
-        
+        <!-- validation Errors -->
+            
+                @if($errors->count()>0)
+                <ul class="list-group-item">
+                    @foreach($errors->all() as $error)
+                    <li class="list-group-item text-danger">
+                        {{ $error }}
+                    </li>
+                    @endforeach
+                </ul>
+                <br>
+                <br>
+                @endif
+
+        <!-- end of validation errors -->
         <div class="container">
             <div class="col-md-4">
                 
@@ -93,6 +107,15 @@
                         <ul class="list-group">
                             <li class="list-group-item">
                                 <a href="/forum" style="text-decoration: none;">HOME</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="/forum?filter=me" style="text-decoration: none;">My Discussions</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="/forum?filter=answered" style="text-decoration: none;">Answered</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="/forum?filter=unanswered" style="text-decoration: none;">UnAnswered</a>
                             </li>
                         </ul>
                     </div>

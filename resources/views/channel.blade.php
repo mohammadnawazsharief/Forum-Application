@@ -8,6 +8,17 @@
                 	<span>{{$d->user->name}}, <b>{{$d->created_at->diffForHumans()}}</b></span>
                 	<a href="{{route('discussion',['slug'=>$d->slug])}}" class="btn btn-default pull-right"> View
                 	</a>
+
+                  @if($d->hasBestAnswer())
+                    <span class="btn btn-pull-right btn-success btn-xs">
+                    CLOSED
+                    </span>
+                  @else
+                  <span class="btn btn-pull-right btn-danger btn-xs">
+                    OPEN
+                  </span>
+                  @endif
+                  
                 </div>
 
                 <div class="panel-body">
