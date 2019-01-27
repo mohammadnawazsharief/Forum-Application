@@ -41,17 +41,17 @@ class Discussion extends Model
     }
     public function hasBestAnswer()
     {
-        $reply = false;
+        $result = false;
         foreach($this->replies as $reply)
         {
             if($reply->best_answer)
             {
-                $reply = true;
+                $result = true;
                 break;
             }
-            
+
         }
-        return $reply;
+        return $result;
     }
 
 }

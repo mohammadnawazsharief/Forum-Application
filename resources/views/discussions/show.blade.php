@@ -21,8 +21,11 @@
                     @endif
                         
                     </span>
-                    @if(Auth::id()== $d->user->id)
-                    <a href="{{route('discussion.edit',['slug'=>$d->slug])}}" class="btn btn-info pull-right btn-xs"style="margin-right: 8px;">Edit</a>
+                    @if(Auth::id() == $d->user->id)
+                        @if(!$d->hasBestAnswer())
+                            <a href="{{route('discussion.edit',['slug'=>$d->slug])}}" class="btn btn-info pull-right btn-xs"style="margin-right: 8px;">Edit</a>
+                        @endif
+                        
                     @endif
                 	@if($d->is_being_watched_by_auth_user())   
                         <a href="{{route('discussion.unwatch',['id'=>$d->id])}}" class="btn btn-default pull-right btn-xs" style="margin-right: 8px;">unWatch</a>
@@ -35,6 +38,7 @@
                 	<h3 class="text-center"><b>{{$d->title}}</b> </h3>
                 	<hr>
                    	<p class="">
+                        
                    		{{$d->content}}
                    	</p>
                     <hr>
@@ -77,6 +81,11 @@
                     @if(!$best_answer)
                         @if(Auth::id() == $d->user->id)
                         <a href="{{route('discussion.best.answer',['id'=> $r->id])}}" class="btn btn-xs btn-info pull-right">Mark as Best answer</a>
+                        @endif
+                    @endif
+                    @if(Auth::id()==$r->user->id)
+                        @if(!$r->best_answer)
+                           <a href="{{route('reply.edit',['id'=> $r->id])}}" class="btn btn-xs btn-info pull-right">Edit Reply</a>
                         @endif
                     @endif
                 </div>
